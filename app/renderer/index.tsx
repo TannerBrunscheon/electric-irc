@@ -39,7 +39,7 @@ export class Window extends React.Component {
           handleClose={this.handleClose}
           handleMinimize={this.handleMinimize}
           handleMaximize={this.handleMaximize}>
-          Electric IRC
+          Gallerama
         </Titlebar>
         <div id="content">
           <div>Hello, world! ❤❤❤</div>
