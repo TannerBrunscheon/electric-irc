@@ -10,8 +10,8 @@
   ],
   "description": "A modern, stylish IRC client using Electron and React",
   "scripts": {
-    "dev": "electron-webpack dev",
-    "compile": "electron-webpack",
+    "dev": "electron-webpack dev --allow-file-access-from-files",
+    "compile": "electron-webpack --allow-file-access-from-files",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist -- --dir -c.compression=store -c.mac.identity=null",
     "start": "yarn run dev",

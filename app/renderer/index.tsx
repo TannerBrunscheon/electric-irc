@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
+const fs = require('fs');
 import { remote } from 'electron'
 
 import { Titlebar } from './components/titlebar'
@@ -42,11 +42,22 @@ export class Window extends React.Component {
           Gallerama
         </Titlebar>
         <div id="content">
+          <img src="C:/IMG950802.jpg"/>
           <div>Hello, world! ❤❤❤</div>
         </div>
       </div>
     )
   }
+  componentDidMount(){
+
+      fs.readdir('C:/', (err, files) => {
+          files.forEach(file => {
+              if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
+              console.log(file);
+          });
+      })
+  }
+
 }
 
 ReactDOM.render(
