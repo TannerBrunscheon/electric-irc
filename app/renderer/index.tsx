@@ -24,7 +24,7 @@ export class Window extends React.Component<any, any> {
     }
   }
 
-  albumNames: string[] = ["hello", "world"];
+  albumNames: string[] = ["test"];
 
   handleClose(e: any) {
     console.log('closing')
@@ -81,8 +81,11 @@ export class Window extends React.Component<any, any> {
       let path = 'C:\\Users\\Tanner\\Pictures';
       fs.readdir(path, (err, files) => {
           files.forEach(file => {
-              if (fs.statSync(path+'/'+file).isDirectory())
-              console.log(file);
+              if (fs.statSync(path+'/'+file).isDirectory()) {
+                  this.albumNames.push(file)
+                  console.log(this.albumNames)
+              }
+
           });
       })
   }
