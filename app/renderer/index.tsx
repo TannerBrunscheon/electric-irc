@@ -1,6 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 const fs = require('fs');
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import { remote } from 'electron'
 
 import { Titlebar } from './components/titlebar'
@@ -10,7 +12,6 @@ import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
 
 export class Window extends React.Component {
-    AlbumareRendered =true;
   handleClose(e: any) {
     console.log('closing')
     const window = remote.getCurrentWindow()
@@ -43,7 +44,6 @@ export class Window extends React.Component {
           Gallerama
         </Titlebar>
         <div id="content">
-          <img src="C:/IMG950802.jpg"/>
           <div>Hello, world! ❤❤❤</div>
         </div>
       </div>

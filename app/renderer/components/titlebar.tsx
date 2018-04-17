@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
 
+
 export interface ITitlebarProps {
   handleClose?(event: any): void;
   handleMinimize?(event: any): void;
