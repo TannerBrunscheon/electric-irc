@@ -10,6 +10,7 @@ import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
 
 export class Window extends React.Component {
+    AlbumareRendered =true;
   handleClose(e: any) {
     console.log('closing')
     const window = remote.getCurrentWindow()
@@ -49,10 +50,10 @@ export class Window extends React.Component {
     )
   }
   componentDidMount(){
-
-      fs.readdir('C:/', (err, files) => {
+      let path = 'C:\\Users\\Tanner\\Pictures';
+      fs.readdir(path, (err, files) => {
           files.forEach(file => {
-              if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
+              if (fs.statSync(path+'/'+file).isDirectory())
               console.log(file);
           });
       })
