@@ -23,12 +23,13 @@ class Album extends React.Component<AlbumProps> {
         const styles:any = {
             width: 250,
             height: 250, 
-            backgroundImage: this.props.src
-        };
+            backgroundImage: "url(" + "C:/Users/Brian/Downloads/testImages/album/testImage.jpg" + ")",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+    };
 
         return (
             <div>
-                <img src = {this.props.src}/>
                 <button style={styles} onClick={this.props.handleAlbumClick}/>
             </div>
         );
