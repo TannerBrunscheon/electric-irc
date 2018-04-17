@@ -58,7 +58,8 @@ export class Window extends React.Component<any, any> {
   render() {
 
     const albums: any = this.albumNames.map((n) => this.state.displayAlbums && <Album name={n} 
-    handleAlbumClick={this.handleAlbumClick} src={"/Users/Cullen/Desktop/CS Topics (ReactJS)/Dogs for Project/download (1).jpeg"} key={n} />);
+    handleAlbumClick={this.handleAlbumClick} 
+    src={"/Users/Cullen/Desktop/CS Topics (ReactJS)/Dogs for Project/download (1).jpeg"} key={n} />);
 
 
     return (
