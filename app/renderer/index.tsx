@@ -95,17 +95,18 @@ export class Window extends React.Component<any, any> {
   addPictures = (folder:string)=>{
       let path = this.state.path;
       let files= fs.readdirSync(path+"\\"+folder);
-      let newpics = []
-      this.setState({
-              pictureNames: []
-          })
+      console.log(files);
+      let newpics:any = [];
+
       files.forEach(file => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
               newpics.push(path+"\\"+folder+"\\"+ file);
+          console.log(newpics)
       });
+      console.log(newpics)
       this.setState({
           pictureNames: newpics
-      })
+      });
       console.log(this.state.pictureNames)
   }
 
