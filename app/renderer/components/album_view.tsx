@@ -5,7 +5,7 @@ import { Button } from 'webdriverio';
 
 
 export interface AlbumProps {
-    handleAlbumClick: (event: any) => void;
+    handleAlbumClick: (folder: any) => void;
     name: string;
     src: string;
 }

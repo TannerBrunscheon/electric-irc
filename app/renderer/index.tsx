@@ -21,7 +21,9 @@ export class Window extends React.Component<any, any> {
       displayAlbums: true,
       displayCards: false,
       displayLarge: false,
-      albumNames: []
+      albumNames: [],
+        pictureNames: [],
+        path :"C:\\Users\\Brian\\Downloads\\testImages"
     }
   }
 
@@ -47,12 +49,12 @@ export class Window extends React.Component<any, any> {
     }
   }
 
-  handleAlbumClick = (event: any) => {
+  handleAlbumClick = (folder: any) => {
     const display: boolean = this.state.displayAlbums;
     this.setState({
       displayAlbums: !display
     });
-    console.log("button clicked");
+    this.addPictures(folder);
   };
 
   render() {
@@ -76,7 +78,7 @@ export class Window extends React.Component<any, any> {
     )
   }
   componentDidMount(){
-      let path = "C:\\Users\\Brian\\Downloads\\testImages";
+      let path = this.state.path;
       let albumNames:any = this.state.albumNames;
 
       let files= fs.readdirSync(path);
@@ -84,19 +86,29 @@ export class Window extends React.Component<any, any> {
       files.forEach(file => {
           if (fs.statSync(path+'/'+file).isDirectory()) {
               albumNames.push(file);
-                console.log(albumNames)
           }
       });
-
-
-
-
-      console.log(albumNames)
       this.setState({
           albumNames: albumNames
       });
-      console.log(this.state)
   }
+  addPictures = (folder:string)=>{
+      let path = this.state.path;
+      let files= fs.readdirSync(path+"\\"+folder);
+      let newpics = []
+      this.setState({
+              pictureNames: []
+          })
+      files.forEach(file => {
+          if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
+              newpics.push(path+"\\"+folder+"\\"+ file);
+      });
+      this.setState({
+          pictureNames: newpics
+      })
+      console.log(this.state.pictureNames)
+  }
+
 }
 
 ReactDOM.render(
