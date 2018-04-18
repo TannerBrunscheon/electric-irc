@@ -83,7 +83,7 @@ export class Window extends React.Component<any, any> {
 
       let files= fs.readdirSync(path);
 
-      files.forEach(file => {
+      files.forEach((file:any) => {
           if (fs.statSync(path+'/'+file).isDirectory()) {
               albumNames.push(file);
           }
@@ -98,7 +98,7 @@ export class Window extends React.Component<any, any> {
       console.log(files);
       let newpics:any = [];
 
-      files.forEach(file => {
+      files.forEach((file:any) => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
               newpics.push(path+"\\"+folder+"\\"+ file);
           console.log(newpics)
