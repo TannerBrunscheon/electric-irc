@@ -27,6 +27,7 @@ class Album extends React.Component<AlbumProps> {
             backgroundSize: "cover",
             backgroundPosition: "center"
          };
+        console.log("First picture location: " + this.props.firstPictureLocation);
 
         return (
             <div>
