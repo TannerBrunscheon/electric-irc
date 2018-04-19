@@ -1,0 +1,36 @@
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button } from 'webdriverio';
+
+
+export interface PictureProps {
+    handleAlbumClick: (folder: any) => void;
+    name: string;
+    src: string;
+}
+
+
+class Picture extends React.Component<PictureProps> {
+
+
+    public render()
+    {
+        const styles:any = {
+            width: 250,
+            height: 250,
+            backgroundImage: "url(" + "C:/Users/Brian/Downloads/testImages/album/testImage.jpg" + ")",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+        };
+
+        return (
+            <div>
+                <button style={styles} onClick={()=>this.props.handleAlbumClick(this.props.name)}/>
+                {this.props.name}
+            </div>
+        );
+    }
+}
+
+export default Picture

@@ -11,16 +11,17 @@ import 'material-design-icons/iconfont/material-icons.css'
 import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
 import Album from './components/album_view';
+import Image from './components/large_image';
 
-export class Window extends React.Component<any, any>
-{
+export class Window extends React.Component<any, any> {
+
   constructor(props: any)
   {
     super(props);
     this.state = {
       displayAlbums: true,
       displayCards: false,
-      displayLarge: false,
+      displayImage: false,
       albumNames: [],
       pictureNames: [],
       path :"C:\\Users\\Brian\\Downloads\\testImages"
@@ -57,12 +58,23 @@ export class Window extends React.Component<any, any>
     this.addPictures(folder);
   };
 
-  render()
-  {
-    const albumContents = this.state.albumNames || [];
-    const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
-    handleAlbumClick={this.handleAlbumClick} firstPictureLocation={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+  handleImageClick = (folder: any) => {
+    const display: boolean = this.state.displayImage;
+    this.setState({
+      displayImage: !display
+    });
 
+  };
+
+  render() {
+    const albumContents = this.state.albumNames||[];
+    const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
+    handleAlbumClick={this.handleAlbumClick}
+    src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+    const pictureContents = this.state.pictureNames ||[];
+    const pictures: any = pictureContents.map((n:string) =><Album name={n}
+        handleAlbumClick={this.handleAlbumClick}
+        src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
      return (
       <div>
         <Titlebar draggable={true}
@@ -71,9 +83,12 @@ export class Window extends React.Component<any, any>
           handleMaximize={this.handleMaximize}>
           Gallerama
         </Titlebar>
-
         <div id="content">
-            {albums}
+          {albums}
+        {pictures}
+        </div>
+        <div id = "picture">
+          {image}
         </div>
       </div>
     )
@@ -81,6 +96,7 @@ export class Window extends React.Component<any, any>
   componentDidMount(){
       let path = this.state.path;
       let albumNames:any = this.state.albumNames;
+      let pictureNames:any = this.state.pictureNames;
 
       let files= fs.readdirSync(path);
 
@@ -90,16 +106,16 @@ export class Window extends React.Component<any, any>
           }
       });
       this.setState({
-          albumNames: albumNames
+          albumNames: albumNames,
+          pictureNames:pictureNames
       });
   }
-
   addPictures = (folder:string)=>{
       let path = this.state.path;
       let files= fs.readdirSync(path+"\\"+folder);
 
-      let newpics:any = [];
-      files.forEach(file => {
+      let newpics:any = []
+      files.forEach((file:any) => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
               newpics.push(path+"\\"+folder+"\\"+ file);
       });
@@ -107,6 +123,16 @@ export class Window extends React.Component<any, any>
           pictureNames: newpics
       })
   }
+    firstImage = (folder:string)=>{
+        let path = this.state.path;
+        let files= fs.readdirSync(path+"\\"+folder);
+        files.forEach(file => {
+            if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
+                return path+"\\"+folder+"\\"+ file;
+        });
+
+    }
+
 }
 
 ReactDOM.render(
