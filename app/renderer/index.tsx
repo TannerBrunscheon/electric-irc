@@ -50,7 +50,7 @@ export class Window extends React.Component<any, any> {
     }
   }
 
-  handleAlbumClick = (folder: any) => {
+  handleAlbumClick = (folder: string) => {
     const display: boolean = this.state.displayAlbums;
     this.setState({
       displayAlbums: !display
@@ -67,17 +67,15 @@ export class Window extends React.Component<any, any> {
   };
 
   render() {
-    const albumContents = this.state.albumNames;
+    const albumContents = this.state.albumNames||[];
     const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
-    handleAlbumClick={this.handleAlbumClick} 
-    src={"/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg"} key={n} />);
-
-    const largeImage = this.state.pictureNames;
-    const image: any = largeImage.map((p:string) => this.state.displayImage && <Image name={p}
-    handleImageClick = {this.handleImageClick}
-    src={"/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg"} key={p} />);
-
-    return (
+    handleAlbumClick={this.handleAlbumClick}
+    src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+    const pictureContents = this.state.pictureNames ||[];
+    const pictures: any = pictureContents.map((n:string) =><Album name={n}
+        handleAlbumClick={this.handleAlbumClick}
+        src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+     return (
       <div>
         <Titlebar draggable={true}
           handleClose={this.handleClose}
@@ -87,6 +85,7 @@ export class Window extends React.Component<any, any> {
         </Titlebar>
         <div id="content">
           {albums}
+        {pictures}
         </div>
         <div id = "picture">
           {image}
@@ -115,19 +114,15 @@ export class Window extends React.Component<any, any> {
   addPictures = (folder:string)=>{
       let path = this.state.path;
       let files= fs.readdirSync(path+"\\"+folder);
-      console.log(files);
-      let newpics:any = [];
 
+      let newpics:any = []
       files.forEach((file:any) => {
-          if (/\.(jpeg|png|gif|bmp)$/i.test(file))
+          if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
               newpics.push(path+"\\"+folder+"\\"+ file);
-          console.log(newpics)
       });
-      console.log(newpics)
       this.setState({
           pictureNames: newpics
-      });
-      console.log(this.state.pictureNames)
+      })
   }
 
 }
