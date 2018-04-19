@@ -11,6 +11,7 @@ import 'material-design-icons/iconfont/material-icons.css'
 import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
 import Album from './components/album_view';
+import Image from './components/large_image';
 
 export class Window extends React.Component<any, any> {
 
@@ -20,10 +21,10 @@ export class Window extends React.Component<any, any> {
     this.state = {
       displayAlbums: true,
       displayCards: false,
-      displayLarge: false,
+      displayImage: false,
       albumNames: [],
         pictureNames: [],
-        path :"C:\\Users\\Brian\\Downloads\\testImages"
+        path :"/Users/Cullen/Desktop/Dogs_for_Project"
     }
   }
 
@@ -57,11 +58,24 @@ export class Window extends React.Component<any, any> {
     this.addPictures(folder);
   };
 
+  handleImageClick = (folder: any) => {
+    const display: boolean = this.state.displayImage;
+    this.setState({
+      displayImage: !display
+    });
+
+  };
+
   render() {
     const albumContents = this.state.albumNames;
     const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
     handleAlbumClick={this.handleAlbumClick} 
-    src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+    src={"/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg"} key={n} />);
+
+    const largeImage = this.state.pictureNames;
+    const image: any = largeImage.map((p:string) => this.state.displayImage && <Image name={p}
+    handleImageClick = {this.handleImageClick}
+    src={"/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg"} key={p} />);
 
     return (
       <div>
@@ -74,12 +88,16 @@ export class Window extends React.Component<any, any> {
         <div id="content">
           {albums}
         </div>
+        <div id = "picture">
+          {image}
+        </div>
       </div>
     )
   }
   componentDidMount(){
       let path = this.state.path;
       let albumNames:any = this.state.albumNames;
+      let pictureNames:any = this.state.pictureNames;
 
       let files= fs.readdirSync(path);
 
@@ -87,9 +105,11 @@ export class Window extends React.Component<any, any> {
           if (fs.statSync(path+'/'+file).isDirectory()) {
               albumNames.push(file);
           }
+
       });
       this.setState({
-          albumNames: albumNames
+          albumNames: albumNames,
+          pictureNames:pictureNames
       });
   }
   addPictures = (folder:string)=>{
@@ -99,7 +119,7 @@ export class Window extends React.Component<any, any> {
       let newpics:any = [];
 
       files.forEach((file:any) => {
-          if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
+          if (/\.(jpeg|png|gif|bmp)$/i.test(file))
               newpics.push(path+"\\"+folder+"\\"+ file);
           console.log(newpics)
       });

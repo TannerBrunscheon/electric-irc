@@ -3,37 +3,38 @@ import * as React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import { Button } from 'webdriverio';
 
-
-export interface AlbumProps {
-    handleAlbumClick: (folder: any) => void;
+export interface ImageProps {
+    handleImageClick: (folder: any) => void;
     name: string;
     src: string;
 }
 
-
-class Album extends React.Component<AlbumProps> {
-    constructor(props: AlbumProps)
+class Image extends React.Component<ImageProps> {
+    constructor(props: ImageProps)
     {
         super(props);
         console.log(props.name);
     }
 
-    public render()
+    public render() 
     {
         const styles:any = {
-            width: 250,
-            height: 250, 
+            width: 500,
+            height: 500, 
             backgroundImage: "url(" + "/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg" + ")",
             backgroundSize: "cover",
             backgroundPosition: "center"
     };
 
-        return (
-            <div>
-                <button style={styles} onClick={() => this.props.handleAlbumClick(this.props.name)}/>
-            </div>
-        );
-    }
-} 
+    return (
+        <div>
+            <button style={styles} onClick={() => this.props.handleImageClick(this.props.name)}/>
+        </div>
+    );
+}
+}
 
-export default Album
+export default Image
+
+
+
