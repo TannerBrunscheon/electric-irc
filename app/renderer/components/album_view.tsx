@@ -7,9 +7,8 @@ import { Button } from 'webdriverio';
 export interface AlbumProps {
     handleAlbumClick: (folder: any) => void;
     name: string;
-    src: string;
+    firstPictureLocation: string;
 }
-
 
 class Album extends React.Component<AlbumProps> {
     constructor(props: AlbumProps)
@@ -20,10 +19,11 @@ class Album extends React.Component<AlbumProps> {
 
     public render()
     {
+        // "C:/Users/Brian/Downloads/testImages/album/testImage.jpg"
         const styles:any = {
-            width: 250,
-            height: 250, 
-            backgroundImage: "url(" + "C:/Users/Brian/Downloads/testImages/album/testImage.jpg" + ")",
+            width: 200,
+            height: 200,
+            backgroundImage: "url(" + this.props.firstPictureLocation + ")",
             backgroundSize: "cover",
             backgroundPosition: "center"
          };

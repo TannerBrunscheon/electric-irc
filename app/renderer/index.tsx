@@ -12,8 +12,8 @@ import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
 import Album from './components/album_view';
 
-export class Window extends React.Component<any, any> {
-
+export class Window extends React.Component<any, any>
+{
   constructor(props: any)
   {
     super(props);
@@ -22,8 +22,8 @@ export class Window extends React.Component<any, any> {
       displayCards: false,
       displayLarge: false,
       albumNames: [],
-        pictureNames: [],
-        path :"C:\\Users\\Brian\\Downloads\\testImages"
+      pictureNames: [],
+      path :"C:\\Users\\Brian\\Downloads\\testImages"
     }
   }
 
@@ -57,15 +57,12 @@ export class Window extends React.Component<any, any> {
     this.addPictures(folder);
   };
 
-  render() {
-    const albumContents = this.state.albumNames||[];
+  render()
+  {
+    const albumContents = this.state.albumNames || [];
     const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
-    handleAlbumClick={this.handleAlbumClick}
-    src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
-    const pictureContents = this.state.pictureNames ||[];
-    const pictures: any = pictureContents.map((n:string) =><Album name={n}
-        handleAlbumClick={this.handleAlbumClick}
-        src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+    handleAlbumClick={this.handleAlbumClick} firstPictureLocation={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+
      return (
       <div>
         <Titlebar draggable={true}
@@ -74,9 +71,9 @@ export class Window extends React.Component<any, any> {
           handleMaximize={this.handleMaximize}>
           Gallerama
         </Titlebar>
+
         <div id="content">
-          {albums}
-        {pictures}
+            {albums}
         </div>
       </div>
     )
@@ -96,11 +93,12 @@ export class Window extends React.Component<any, any> {
           albumNames: albumNames
       });
   }
+
   addPictures = (folder:string)=>{
       let path = this.state.path;
       let files= fs.readdirSync(path+"\\"+folder);
 
-      let newpics:any = []
+      let newpics:any = [];
       files.forEach(file => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
               newpics.push(path+"\\"+folder+"\\"+ file);
@@ -109,7 +107,6 @@ export class Window extends React.Component<any, any> {
           pictureNames: newpics
       })
   }
-
 }
 
 ReactDOM.render(
