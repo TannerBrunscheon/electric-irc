@@ -21,7 +21,7 @@ class Image extends React.Component<ImageProps> {
         const styles:any = {
             width: 500,
             height: 500, 
-            backgroundImage: "url(" + "/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg" + ")",
+            backgroundImage: "url(" + "C:\\Users\\Brian\\Downloads\\testImage.jpg" + ")",
             backgroundSize: "cover",
             backgroundPosition: "center"
     };

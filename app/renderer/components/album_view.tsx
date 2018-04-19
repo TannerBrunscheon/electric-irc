@@ -23,7 +23,7 @@ class Album extends React.Component<AlbumProps> {
         const styles:any = {
             width: 250,
             height: 250, 
-            backgroundImage: "url(" + "/Users/Cullen/Desktop/Dogs_for_Project/images.jpeg" + ")",
+            backgroundImage: "url(" + "C:\\Users\\Brian\\Downloads\\testImage.jpg" + ")",
             backgroundSize: "cover",
             backgroundPosition: "center"
     };
