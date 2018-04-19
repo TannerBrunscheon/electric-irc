@@ -26,11 +26,12 @@ class Album extends React.Component<AlbumProps> {
             backgroundImage: "url(" + "C:/Users/Brian/Downloads/testImages/album/testImage.jpg" + ")",
             backgroundSize: "cover",
             backgroundPosition: "center"
-    };
+         };
 
         return (
             <div>
                 <button style={styles} onClick={() => this.props.handleAlbumClick(this.props.name)}/>
+                <p><b>{this.props.name}</b></p>
             </div>
         );
     }

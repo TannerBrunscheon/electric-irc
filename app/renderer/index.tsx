@@ -23,7 +23,7 @@ export class Window extends React.Component<any, any> {
       displayLarge: false,
       albumNames: [],
         pictureNames: [],
-        path :"C:\\Users\\Brian\\Downloads\\testImages"
+        pathToAlbums :"C:\\Users\\Brian\\Downloads\\testImages"
     }
   }
 
@@ -78,13 +78,13 @@ export class Window extends React.Component<any, any> {
     )
   }
   componentDidMount(){
-      let path = this.state.path;
+      let pathToAlbums = this.state.pathToAlbums;
       let albumNames:any = this.state.albumNames;
 
-      let files= fs.readdirSync(path);
+      let files= fs.readdirSync(pathToAlbums);
 
       files.forEach(file => {
-          if (fs.statSync(path+'/'+file).isDirectory()) {
+          if (fs.statSync(pathToAlbums+'/'+file).isDirectory()) {
               albumNames.push(file);
           }
       });
@@ -93,14 +93,14 @@ export class Window extends React.Component<any, any> {
       });
   }
   addPictures = (folder:string)=>{
-      let path = this.state.path;
-      let files= fs.readdirSync(path+"\\"+folder);
+      let pathToAlbums = this.state.pathToAlbums;
+      let files= fs.readdirSync(pathToAlbums+"\\"+folder);
       console.log(files);
       let newpics:any = [];
 
       files.forEach(file => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
-              newpics.push(path+"\\"+folder+"\\"+ file);
+              newpics.push(pathToAlbums+"\\"+folder+"\\"+ file);
           console.log(newpics)
       });
       console.log(newpics)
