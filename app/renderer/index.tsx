@@ -23,7 +23,7 @@ export class Window extends React.Component<any, any> {
       displayLarge: false,
       albumNames: [],
         pictureNames: [],
-        pathToAlbums :"C:\\Users\\Brian\\Downloads\\testImages"
+        path :"C:\\Users\\Brian\\Downloads\\testImages"
     }
   }
 
@@ -49,7 +49,7 @@ export class Window extends React.Component<any, any> {
     }
   }
 
-  handleAlbumClick = (folder: any) => {
+  handleAlbumClick = (folder: string) => {
     const display: boolean = this.state.displayAlbums;
     this.setState({
       displayAlbums: !display
@@ -58,12 +58,15 @@ export class Window extends React.Component<any, any> {
   };
 
   render() {
-    const albumContents = this.state.albumNames;
+    const albumContents = this.state.albumNames||[];
     const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
-    handleAlbumClick={this.handleAlbumClick} 
+    handleAlbumClick={this.handleAlbumClick}
     src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
-
-    return (
+    const pictureContents = this.state.pictureNames ||[];
+    const pictures: any = pictureContents.map((n:string) =><Album name={n}
+        handleAlbumClick={this.handleAlbumClick}
+        src={"C:\\Users\\Brian\\Downloads\\testImage.jpg"} key={n} />);
+     return (
       <div>
         <Titlebar draggable={true}
           handleClose={this.handleClose}
@@ -73,18 +76,19 @@ export class Window extends React.Component<any, any> {
         </Titlebar>
         <div id="content">
           {albums}
+        {pictures}
         </div>
       </div>
     )
   }
   componentDidMount(){
-      let pathToAlbums = this.state.pathToAlbums;
+      let path = this.state.path;
       let albumNames:any = this.state.albumNames;
 
-      let files= fs.readdirSync(pathToAlbums);
+      let files= fs.readdirSync(path);
 
-      files.forEach(file => {
-          if (fs.statSync(pathToAlbums+'/'+file).isDirectory()) {
+      files.forEach((file:any) => {
+          if (fs.statSync(path+'/'+file).isDirectory()) {
               albumNames.push(file);
           }
       });
@@ -93,21 +97,17 @@ export class Window extends React.Component<any, any> {
       });
   }
   addPictures = (folder:string)=>{
-      let pathToAlbums = this.state.pathToAlbums;
-      let files= fs.readdirSync(pathToAlbums+"\\"+folder);
-      console.log(files);
-      let newpics:any = [];
+      let path = this.state.path;
+      let files= fs.readdirSync(path+"\\"+folder);
 
+      let newpics:any = []
       files.forEach(file => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
-              newpics.push(pathToAlbums+"\\"+folder+"\\"+ file);
-          console.log(newpics)
+              newpics.push(path+"\\"+folder+"\\"+ file);
       });
-      console.log(newpics)
       this.setState({
           pictureNames: newpics
-      });
-      console.log(this.state.pictureNames)
+      })
   }
 
 }
