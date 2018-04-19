@@ -109,6 +109,15 @@ export class Window extends React.Component<any, any> {
           pictureNames: newpics
       })
   }
+    firstImage = (folder:string)=>{
+        let path = this.state.path;
+        let files= fs.readdirSync(path+"\\"+folder);
+        files.forEach(file => {
+            if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
+                return path+"\\"+folder+"\\"+ file;
+        });
+
+    }
 
 }
 
