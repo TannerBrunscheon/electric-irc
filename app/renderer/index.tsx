@@ -23,7 +23,7 @@ export class Window extends React.Component<any, any> {
       displayLarge: false,
       albumNames: [],
         pictureNames: [],
-        path :"C:\\Users\\Tanner\\Pictures"
+        path :"C:\\Users\\Brian\\Downloads\\testImages"
     }
   }
 
@@ -87,7 +87,7 @@ export class Window extends React.Component<any, any> {
 
       let files= fs.readdirSync(path);
 
-      files.forEach(file => {
+      files.forEach((file:any) => {
           if (fs.statSync(path+'/'+file).isDirectory()) {
               albumNames.push(file);
           }
@@ -95,7 +95,6 @@ export class Window extends React.Component<any, any> {
       this.setState({
           albumNames: albumNames
       });
-      console.log(this.state.albumNames)
   }
   addPictures = (folder:string)=>{
       let path = this.state.path;
@@ -108,8 +107,7 @@ export class Window extends React.Component<any, any> {
       });
       this.setState({
           pictureNames: newpics
-      });
-
+      })
   }
 
 }

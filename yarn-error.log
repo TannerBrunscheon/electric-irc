@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js start
 
 PATH: 
   /Users/Cullen/anaconda3/bin:/Users/Cullen/miniconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/Cullen/anaconda3/bin:/Users/Cullen/miniconda3/bin
@@ -86,11 +86,13 @@ npm manifest:
       "webpack": "^3.10.0"
     },
     "dependencies": {
+      "bootstrap": "^4.1.0",
       "classnames": "^2.2.5",
       "electron-store": "^1.3.0",
       "material-design-icons": "^3.0.1",
       "react": "^16.2.0",
       "react-dom": "^16.2.0",
+      "reactstrap": "^5.0.0-beta.3",
       "source-map-support": "^0.5.1",
       "typeface-roboto": "^0.0.50"
     },
@@ -1386,6 +1388,10 @@ Lockfile:
     dependencies:
       hoek "4.x.x"
   
+  bootstrap@^4.1.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.0.tgz#110b05c31a236d56dbc9adcda6dd16f53738a28a"
+  
   boxen@^1.2.1:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.3.0.tgz#55c6c39a8ba58d9c61ad22cd877532deb665a20b"
@@ -1673,6 +1679,10 @@ Lockfile:
       pathval "^1.0.0"
       type-detect "^4.0.0"
   
+  chain-function@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/chain-function/-/chain-function-1.0.0.tgz#0d4ab37e7e18ead0bdc47b920764118ce58733dc"
+  
   chalk@^1.1.1, chalk@^1.1.3:
     version "1.1.3"
     resolved "https://registry.yarnpkg.com/chalk/-/chalk-1.1.3.tgz#a8115c55e4a702fe4d150abd3872822a7e09fc98"
@@ -1772,7 +1782,7 @@ Lockfile:
       isobject "^3.0.0"
       static-extend "^0.1.1"
   
-  classnames@^2.2.5:
+  classnames@^2.2.3, classnames@^2.2.5:
     version "2.2.5"
     resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
   
@@ -2495,6 +2505,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dom-converter/-/dom-converter-0.1.4.tgz#a45ef5727b890c9bffe6d7c876e7b19cb0e17f3b"
     dependencies:
       utila "~0.3"
+  
+  dom-helpers@^3.2.0:
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.3.1.tgz#fc1a4e15ffdf60ddde03a480a9c0fece821dd4a6"
   
   dom-serializer@0, dom-serializer@~0.1.0:
     version "0.1.0"
@@ -4702,6 +4716,14 @@ Lockfile:
     version "3.0.8"
     resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.8.tgz#4db709fc81bc4a8fd7127a458a5346c5cdce2c6b"
   
+  lodash.isfunction@^3.0.9:
+    version "3.0.9"
+    resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
+  
+  lodash.isobject@^3.0.2:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
+  
   lodash.isplainobject@^4.0.6:
     version "4.0.6"
     resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
@@ -4733,6 +4755,10 @@ Lockfile:
   lodash.tail@^4.1.1:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
+  
+  lodash.tonumber@^4.0.3:
+    version "4.0.3"
+    resolved "https://registry.yarnpkg.com/lodash.tonumber/-/lodash.tonumber-4.0.3.tgz#0b96b31b35672793eb7f5a63ee791f1b9e9025d9"
   
   lodash.uniq@^4.5.0:
     version "4.5.0"
@@ -5695,6 +5721,10 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   
+  popper.js@^1.12.9:
+    version "1.14.3"
+    resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.3.tgz#1438f98d046acf7b4d78cd502bf418ac64d4f095"
+  
   portfinder@^1.0.9:
     version "1.0.13"
     resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.13.tgz#bb32ecd87c27104ae6ee44b5a3ccbf0ebb1aede9"
@@ -6004,6 +6034,14 @@ Lockfile:
     dependencies:
       asap "~2.0.3"
   
+  prop-types@^15.5.8:
+    version "15.6.1"
+    resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
+    dependencies:
+      fbjs "^0.8.16"
+      loose-envify "^1.3.1"
+      object-assign "^4.1.1"
+  
   prop-types@^15.6.0:
     version "15.6.0"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
@@ -6156,6 +6194,19 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
+  react-popper@^0.8.3:
+    version "0.8.3"
+    resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.3.tgz#0f73333137c9fb0af6ec4074d2d0585a0a0461e1"
+    dependencies:
+      popper.js "^1.12.9"
+      prop-types "^15.6.0"
+  
+  react-portal@^4.1.2:
+    version "4.1.4"
+    resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.1.4.tgz#3fc3f3f3a0e81362ab1dc9afa3c4bb5a84ec76a3"
+    dependencies:
+      prop-types "^15.5.8"
+  
   react-reconciler@^0.7.0:
     version "0.7.0"
     resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
@@ -6173,6 +6224,16 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
+  react-transition-group@^2.2.1:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.3.0.tgz#8dd1af58f6af284b19fd057f512e74f20438ad31"
+    dependencies:
+      chain-function "^1.0.0"
+      dom-helpers "^3.2.0"
+      loose-envify "^1.3.1"
+      prop-types "^15.5.8"
+      warning "^3.0.0"
+  
   react@^16.2.0:
     version "16.2.0"
     resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
@@ -6181,6 +6242,19 @@ Lockfile:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
       prop-types "^15.6.0"
+  
+  reactstrap@^5.0.0-beta.3:
+    version "5.0.0-beta.3"
+    resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-5.0.0-beta.3.tgz#e3d4675072b259baf0bda021822622cb76ef7e30"
+    dependencies:
+      classnames "^2.2.3"
+      lodash.isfunction "^3.0.9"
+      lodash.isobject "^3.0.2"
+      lodash.tonumber "^4.0.3"
+      prop-types "^15.5.8"
+      react-popper "^0.8.3"
+      react-portal "^4.1.2"
+      react-transition-group "^2.2.1"
   
   read-config-file@2.1.1:
     version "2.1.1"
@@ -7657,6 +7731,12 @@ Lockfile:
     dependencies:
       indexof "0.0.1"
   
+  warning@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+    dependencies:
+      loose-envify "^1.0.0"
+  
   watchpack@^1.4.0:
     version "1.4.0"
     resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.4.0.tgz#4a1472bcbb952bd0a9bb4036801f954dfb39faac"
@@ -8060,24 +8140,17 @@ Lockfile:
       readable-stream "^2.0.0"
 
 Trace: 
-  Error: /Users/Cullen/galleryyy/node_modules/electron: Command failed.
+  Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c node install.js
-  Directory: /Users/Cullen/galleryyy/node_modules/electron
+  Arguments: -c yarn run dev
+  Directory: /Users/Cullen/galleryyy
   Output:
-  /Users/Cullen/galleryyy/node_modules/electron/install.js:48
-    throw err
-    ^
   
-  Error: EEXIST: file already exists, symlink 'Versions/Current/Electron Framework' -> '/Users/Cullen/galleryyy/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Electron Framework'
       at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
       at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
       at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
       at emitTwo (events.js:126:13)
       at ChildProcess.emit (events.js:214:7)
       at maybeClose (internal/child_process.js:925:16)
-      at Socket.stream.socket.on (internal/child_process.js:346:11)
-      at emitOne (events.js:116:13)
-      at Socket.emit (events.js:211:7)
-      at Pipe._handle.close [as _onclose] (net.js:554:12)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
