@@ -30,7 +30,8 @@ class Album extends React.Component<AlbumProps> {
 
         return (
             <div>
-                <button style={styles} onClick={this.props.handleAlbumClick}/>
+                <button style={styles} onClick={()=>this.props.handleAlbumClick(this.props.name)}/>
+                {this.props.name}
             </div>
         );
     }
