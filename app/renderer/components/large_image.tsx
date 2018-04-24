@@ -17,10 +17,6 @@ class Image extends React.Component<ImageProps> {
 
     public render() 
     {
-        const styles:any = {
-            backgroundImage: "url(" + this.props.src + ")",
-        };
-
         return (
             <div>
                 <img src={this.props.src}/>
