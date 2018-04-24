@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //import { Button } from 'webdriverio';
 
 export interface ImageProps {
-    handleImageClick: (folder: any) => void;
     name: string;
     src: string;
 }
@@ -19,19 +18,15 @@ class Image extends React.Component<ImageProps> {
     public render() 
     {
         const styles:any = {
-            width: 500,
-            height: 500, 
-            backgroundImage: "url(" + "C:\\Users\\Brian\\Downloads\\testImage.jpg" + ")",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-    };
+            backgroundImage: "url(" + this.props.src + ")",
+        };
 
-    return (
-        <div>
-            <button style={styles} onClick={() => this.props.handleImageClick(this.props.name)}/>
-        </div>
-    );
-}
+        return (
+            <div>
+                <img src={this.props.src}/>
+            </div>
+        );
+    }
 }
 
 export default Image

@@ -5,29 +5,32 @@ import { Button } from 'webdriverio';
 
 
 export interface PictureProps {
-    handleAlbumClick: (folder: any) => void;
+    handlePictureClick: (folder: any) => void;
     name: string;
     src: string;
 }
 
 
-class Picture extends React.Component<PictureProps> {
-
-
+class Picture extends React.Component<PictureProps>
+{
     public render()
     {
-        const styles:any = {
-            width: 250,
-            height: 250,
-            backgroundImage: "url(" + "C:/Users/Brian/Downloads/testImages/album/testImage.jpg" + ")",
+        const buttonStyles:any = {
+            width: 200,
+            height: 200,
+            backgroundImage: "url(" + this.props.src + ")",
             backgroundSize: "cover",
             backgroundPosition: "center"
         };
 
+        const divStyles:any = {
+            padding: 25
+        };
+
         return (
-            <div>
-                <button style={styles} onClick={()=>this.props.handleAlbumClick(this.props.name)}/>
-                {this.props.name}
+            <div style={divStyles}>
+                <button style={buttonStyles} onClick={()=>this.props.handlePictureClick(this.props.src)}/>
+                <p><b>{this.props.name}</b></p>
             </div>
         );
     }

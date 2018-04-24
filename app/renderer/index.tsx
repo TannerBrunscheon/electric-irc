@@ -12,6 +12,7 @@ import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
 import Album from './components/album_view';
 import Image from './components/large_image';
+import Picture from "./components/picture";
 
 export class Window extends React.Component<any, any>
 {
@@ -20,10 +21,11 @@ export class Window extends React.Component<any, any>
         super(props);
         this.state = {
           displayAlbums: true,
-          displayCards: false,
+          displayPictures: false,
           displayImage: false,
           albumNames: [],
           pictureNames: [],
+          largePictureSrc: "",
           path :"C:/Users/Brian/Downloads/testImages"
         }
     }
@@ -48,17 +50,47 @@ export class Window extends React.Component<any, any>
     }
 
     handleAlbumClick = (folder: string) => {
-        const display: boolean = this.state.displayAlbums;
-        this.setState({
-            displayAlbums: !display
-        });
         this.addPictures(folder);
+
+        const displayA: boolean = this.state.displayAlbums;
+        const displayP: boolean = this.state.displayPictures;
+
+        this.setState({
+            displayAlbums: !displayA,
+            displayPictures: !displayP
+        });
     };
 
-    handleImageClick = (folder: any) => {
-        const display: boolean = this.state.displayImage;
+    handleImageClick = (file: string) => {
+        const displayI: boolean = this.state.displayImage;
+        const displayP: boolean = this.state.displayPictures;
         this.setState({
-            displayImage: !display
+            displayImage: !displayI,
+            displayPictures: !displayP,
+            largePictureSrc: file
+        });
+    };
+
+    handleBackClick = () => {
+        let displayA: boolean = this.state.displayAlbums;
+        let displayI: boolean = this.state.displayImage;
+        let displayP: boolean = this.state.displayPictures;
+
+        if(displayP)
+        {
+            displayP = !displayP;
+            displayA = !displayA;
+        }
+        else
+        {
+            displayP = !displayP;
+            displayI = !displayI;
+        }
+console.log("Button pressed");
+        this.setState({
+            displayImage: displayI,
+            displayPictures: displayP,
+            displayAlbums: displayA
         });
     };
 
@@ -67,14 +99,29 @@ export class Window extends React.Component<any, any>
         const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
                         handleAlbumClick={this.handleAlbumClick} firstPictureLocation={this.firstImage(n)} key={n} />);
 
+        const pictureContents = this.state.pictureNames || [];
+        const pictures: any = pictureContents.map((n:string) => this.state.displayPictures && <Picture src={n}
+                                        handlePictureClick={this.handleImageClick} name={n.split('/').pop()!} key={n} />);
+
+        const bigPicture: any = this.state.displayImage && <Image name={this.state.largePictureSrc.split('/').pop()||""} src={this.state.largePictureSrc}/>;
+
+
+
+        const backButton: any = (this.state.displayImage || this.state.displayPictures) && <button onClick={this.handleBackClick}>Back</button>;
+
         return (
         <div>
             <Titlebar draggable={true} handleClose={this.handleClose} handleMinimize={this.handleMinimize} handleMaximize={this.handleMaximize}>
                 Gallerama
             </Titlebar>
 
-            <div id="content">
-            {albums}
+            {backButton}
+            <div id="content" className={"row"}>
+                <hr/>
+                {albums}
+                {pictures}
+                {bigPicture}
+                <hr/>
             </div>
         </div>
         );
@@ -95,7 +142,7 @@ export class Window extends React.Component<any, any>
       });
       this.setState({
           albumNames: albumNames,
-          pictureNames:pictureNames
+          pictureNames: pictureNames
       });
     }
 
@@ -103,10 +150,10 @@ export class Window extends React.Component<any, any>
       let path = this.state.path;
       let files= fs.readdirSync(path+"\\"+folder);
 
-      let newpics:any = []
+      let newpics:any = [];
       files.forEach((file:any) => {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(file))
-              newpics.push(path+"\\"+folder+"\\"+ file);
+              newpics.push(path+"/"+folder+"/"+ file);
       });
       this.setState({
           pictureNames: newpics
