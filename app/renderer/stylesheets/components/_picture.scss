@@ -1,0 +1,13 @@
+.Picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  outline: none;
+  background-position: center;
+  background-size: cover;
+  image-orientation: from-image;
+}
+
+.Picture:hover {
+  cursor: pointer;
+}
