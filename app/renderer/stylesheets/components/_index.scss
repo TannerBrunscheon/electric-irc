@@ -1,3 +1,18 @@
 #content {
-  margin: 8px;
+  margin: 0;
+}
+
+.BackButton {
+  width: 50px;
+  height: 50px;
+  left: 15px;
+  top: 15px;
+  outline: none;
+  border-radius: 5px;
+  background-size: auto;
+  background: url("https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-back-128.png") center;
+}
+
+.BackButton:hover {
+  cursor: pointer;
 }

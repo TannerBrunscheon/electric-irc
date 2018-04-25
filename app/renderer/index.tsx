@@ -2,11 +2,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 const fs = require('fs');
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import { remote } from 'electron'
-
 import { Titlebar } from './components/titlebar'
-
 import 'material-design-icons/iconfont/material-icons.css'
 import 'typeface-roboto/index.css'
 import './stylesheets/main.scss'
@@ -49,6 +46,8 @@ export class Window extends React.Component<any, any>
         }
     }
 
+    // When an album is clicked, first get all of the pictures in that
+    // folder then change the state to display album contents
     handleAlbumClick = (folder: string) => {
         this.addPictures(folder);
 
@@ -61,6 +60,8 @@ export class Window extends React.Component<any, any>
         });
     };
 
+    // When a small picture is clicked within an album, change the
+    // state so a large version of that photo is rendered.
     handleImageClick = (file: string) => {
         const displayI: boolean = this.state.displayImage;
         const displayP: boolean = this.state.displayPictures;
@@ -86,7 +87,7 @@ export class Window extends React.Component<any, any>
             displayP = !displayP;
             displayI = !displayI;
         }
-console.log("Button pressed");
+
         this.setState({
             displayImage: displayI,
             displayPictures: displayP,
@@ -94,7 +95,8 @@ console.log("Button pressed");
         });
     };
 
-    render() {
+    render()
+    {
         const albumContents = this.state.albumNames || [];
         const albums: any = albumContents.map((n:string) => this.state.displayAlbums && <Album name={n}
                         handleAlbumClick={this.handleAlbumClick} firstPictureLocation={this.firstImage(n)} key={n} />);
@@ -105,47 +107,47 @@ console.log("Button pressed");
 
         const bigPicture: any = this.state.displayImage && <Image name={this.state.largePictureSrc.split('/').pop()||""} src={this.state.largePictureSrc}/>;
 
-
-
-        const backButton: any = (this.state.displayImage || this.state.displayPictures) && <button onClick={this.handleBackClick}>Back</button>;
+        // Render a back button if we're either within an album or displaying a large photo
+        const backButton: any = (this.state.displayImage || this.state.displayPictures) && <button className={"BackButton"} onClick={this.handleBackClick}/>;
 
         return (
         <div>
             <Titlebar draggable={true} handleClose={this.handleClose} handleMinimize={this.handleMinimize} handleMaximize={this.handleMaximize}>
-                Gallerama
+                Photo Gallery
             </Titlebar>
 
-            {backButton}
             <div id="content" className={"row"}>
-                <hr/>
+                {backButton}
                 {albums}
                 {pictures}
                 {bigPicture}
-                <hr/>
             </div>
         </div>
         );
     }
 
-
-    componentDidMount(){
+    // Get all of the albums (folder names) within the directory specified by this.state.path
+    componentDidMount()
+    {
       let path = this.state.path;
       let albumNames:any = this.state.albumNames;
       let pictureNames:any = this.state.pictureNames;
 
       let files= fs.readdirSync(path);
-
       files.forEach((file:any) => {
           if (fs.statSync(path+'/'+file).isDirectory()) {
               albumNames.push(file);
           }
       });
+
       this.setState({
           albumNames: albumNames,
           pictureNames: pictureNames
       });
     }
 
+    // Given a path to a folder, get every picture in the album
+    // and populate the pictureNames array.
     addPictures = (folder:string)=>{
       let path = this.state.path;
       let files= fs.readdirSync(path+"\\"+folder);
@@ -160,7 +162,7 @@ console.log("Button pressed");
       })
     };
 
-    // Given the name of an album, gets the first picture in the album.
+    // Given the name of an album, get the first picture in the album.
     firstImage = (folder:string)=>{
         let path = this.state.path;
         let files= fs.readdirSync(path+"\\"+folder);
