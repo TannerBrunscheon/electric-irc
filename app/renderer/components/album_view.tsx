@@ -16,10 +16,6 @@ class Album extends React.Component<AlbumProps>
 
     public render()
     {
-        const styles:any = {
-            backgroundImage: "url(" + this.props.firstPictureLocation + ")",
-         };
-
         const divStyles:any = {
             padding: 25,
             left: 50
@@ -27,7 +23,7 @@ class Album extends React.Component<AlbumProps>
 
         return (
             <div style={divStyles}>
-                <button className={"album"} style={styles} onClick={() => this.props.handleAlbumClick(this.props.name)}/>
+                <img src={this.props.firstPictureLocation} className={"album"} onClick={() => this.props.handleAlbumClick(this.props.name)}/>
                 <p><b>{this.props.name}</b></p>
             </div>
         );

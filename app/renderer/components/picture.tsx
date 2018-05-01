@@ -11,17 +11,13 @@ class Picture extends React.Component<PictureProps>
 {
     public render()
     {
-        const buttonStyles:any = {
-            backgroundImage: "url(" + this.props.src + ")",
-        };
-
         const divStyles:any = {
             padding: 25
         };
 
         return (
             <div style={divStyles}>
-                <button className={"Picture"} style={buttonStyles} onClick={()=>this.props.handlePictureClick(this.props.src)}/>
+                <img src={this.props.src} className={"Picture"} onClick={()=>this.props.handlePictureClick(this.props.src)}/>
                 <p><b>{this.props.name}</b></p>
             </div>
         );

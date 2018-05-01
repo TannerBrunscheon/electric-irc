@@ -23,7 +23,8 @@ export class Window extends React.Component<any, any>
           albumNames: [],
           pictureNames: [],
           largePictureSrc: "",
-          path :"C:/Users/Brian/Downloads/testImages"
+          path:"C:/",
+          pathInput: "C:/"
         }
     }
 
@@ -95,6 +96,20 @@ export class Window extends React.Component<any, any>
         });
     };
 
+    // Called when path textbox value changes
+    handleSetPath = (event:any) => {
+        this.setState({
+            pathInput: event.target.value
+        });
+    };
+
+    handleSetPathClick = (event:any) => {
+        this.setState({
+            path: this.state.pathInput,
+            albumNames:[]
+        },()=> this.changePath());
+    };
+
     render()
     {
         const albumContents = this.state.albumNames || [];
@@ -110,6 +125,9 @@ export class Window extends React.Component<any, any>
         // Render a back button if we're either within an album or displaying a large photo
         const backButton: any = (this.state.displayImage || this.state.displayPictures) && <button className={"BackButton"} onClick={this.handleBackClick}/>;
 
+        const enterPath: any = this.state.displayAlbums && <input value={this.state.pathInput} onChange={this.handleSetPath} className={"col-10"}/>;
+        const enterPathButton: any = this.state.displayAlbums && <button onClick={this.handleSetPathClick}>Set Path</button>;
+
         return (
         <div>
             <Titlebar draggable={true} handleClose={this.handleClose} handleMinimize={this.handleMinimize} handleMaximize={this.handleMaximize}>
@@ -121,29 +139,48 @@ export class Window extends React.Component<any, any>
                 {albums}
                 {pictures}
                 {bigPicture}
+                <div className={"SelectPath"}>
+                    {enterPath}
+                    {enterPathButton}
+                </div>
             </div>
         </div>
         );
     }
 
-    // Get all of the albums (folder names) within the directory specified by this.state.path
     componentDidMount()
     {
-      let path = this.state.path;
-      let albumNames:any = this.state.albumNames;
-      let pictureNames:any = this.state.pictureNames;
+        this.changePath();
+    }
 
-      let files= fs.readdirSync(path);
-      files.forEach((file:any) => {
-          if (fs.statSync(path+'/'+file).isDirectory()) {
-              albumNames.push(file);
-          }
-      });
+    // Get all of the albums (folder names) within the directory specified by this.state.path
+    changePath()
+    {
+        let path = this.state.path;
+        let albumNames:any = this.state.albumNames;
+        let pictureNames:any = this.state.pictureNames;
 
-      this.setState({
-          albumNames: albumNames,
-          pictureNames: pictureNames
-      });
+        try {
+            let files = fs.readdirSync(path);
+            files.forEach((file: any) => {
+                if (fs.statSync(path + '/' + file).isDirectory()) {
+                    albumNames.push(file);
+                }
+            });
+        }
+        catch (e) {
+            this.setState({
+                albumNames: [],
+                path: "error"
+            });
+            return;
+        }
+
+        this.setState({
+            albumNames: albumNames,
+            pictureNames: pictureNames
+        });
+
     }
 
     // Given a path to a folder, get every picture in the album
