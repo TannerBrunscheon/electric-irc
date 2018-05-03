@@ -12,7 +12,8 @@ class Picture extends React.Component<PictureProps>
     public render()
     {
         const divStyles:any = {
-            padding: 25
+            padding: 25,
+            textAlign: "center"
         };
 
         return (

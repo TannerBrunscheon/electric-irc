@@ -18,7 +18,8 @@ class Album extends React.Component<AlbumProps>
     {
         const divStyles:any = {
             padding: 25,
-            left: 50
+            left: 50,
+            textAlign: "center"
         };
 
         return (

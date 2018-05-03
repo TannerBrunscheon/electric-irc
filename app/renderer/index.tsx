@@ -125,6 +125,7 @@ export class Window extends React.Component<any, any>
         // Render a back button if we're either within an album or displaying a large photo
         const backButton: any = (this.state.displayImage || this.state.displayPictures) && <button className={"BackButton"} onClick={this.handleBackClick}/>;
 
+        // Determine whether or not a text box should be rendered for changing the path to the albums
         const enterPath: any = this.state.displayAlbums && <input value={this.state.pathInput} onChange={this.handleSetPath} className={"col-10"}/>;
         const enterPathButton: any = this.state.displayAlbums && <button onClick={this.handleSetPathClick}>Set Path</button>;
 
@@ -133,9 +134,8 @@ export class Window extends React.Component<any, any>
             <Titlebar draggable={true} handleClose={this.handleClose} handleMinimize={this.handleMinimize} handleMaximize={this.handleMaximize}>
                 Photo Gallery
             </Titlebar>
-
+            {backButton}
             <div id="content" className={"row"}>
-                {backButton}
                 {albums}
                 {pictures}
                 {bigPicture}
