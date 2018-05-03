@@ -205,7 +205,7 @@ export class Window extends React.Component<any, any>
         let files= fs.readdirSync(path+"\\"+folder);
         let firstPicturePath = "";
 
-        files.some(file => {
+        files.some((file:any) => {
             if (/\.(jpe?g|png|gif|bmp)$/i.test(file) && firstPicturePath === "") {
                 firstPicturePath = path + "/" + folder + "/" + file;
             }
